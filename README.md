@@ -15,6 +15,11 @@ App Link = https://subscription-dashboard-task-zeta.vercel.app
 
 ---
 
+## Admin Credentials
+| Email | Password                   | 
+| ------ | -------------------------- |
+| `admin@gmail.com`   | admin@123       |
+
 ## Tech Stack
 
 ### Frontend
