@@ -13,9 +13,11 @@ const Login = () => {
     email: '',
     password: '',
   });
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const data = await loginUser(formData);
@@ -36,6 +38,8 @@ const Login = () => {
       }
     } catch (error: any) {
       toast.error(error.response?.data?.message || 'Login Failed');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -70,7 +74,11 @@ const Login = () => {
           }
         />
 
-        <button className="w-full bg-black text-white p-3 rounded-lg cursor-pointer">Login</button>
+        <button
+          className={`p-3 w-full  rounded-lg  text-white transition duration-300 ${loading ? 'bg-gray-700 cursor-not-allowed' : 'bg-black hover:bg-gray-800 cursor-pointer'}`}
+          disabled={loading}>
+          {loading ? 'Loading...' : 'Login'}
+        </button>
 
         <p className="mt-4 text-center">
           Don't have account?{' '}

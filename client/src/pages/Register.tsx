@@ -11,10 +11,11 @@ const Register = () => {
     email: '',
     password: '',
   });
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       await registerUser(formData);
 
@@ -23,6 +24,8 @@ const Register = () => {
       navigate('/login');
     } catch (error: any) {
       toast.error(error.response?.data?.message || 'Registration Failed');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -92,8 +95,10 @@ const Register = () => {
             />
           </div>
 
-          <button className="p-3 w-full cursor-pointer rounded-lg hover:bg-gray-800 bg-gray-700 text-white transition duration-300">
-            Create Account
+          <button
+            className={`p-3 w-full rounded-lg  text-white transition duration-300 ${loading ? 'bg-gray-700 cursor-not-allowed' : 'bg-gray-900 hover:bg-gray-800 cursor-pointer'}`}
+            disabled={loading}>
+            {loading ? 'Loading...' : 'Create Account'}
           </button>
         </form>
 
