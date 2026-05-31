@@ -168,6 +168,7 @@ The frontend will run at `http://localhost:5173`.
 - Navigation bar with user menu and logout button
 - Structured API error responses with proper HTTP status codes
 - Input validation using Joi
+- Light/Dark Theme
 
 ---
 
